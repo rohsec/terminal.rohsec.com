@@ -4,7 +4,7 @@ from time import sleep
 from pyscript import document, fetch
 
 ## remove load banner
-__terminal__.resize(100,100)
+# __terminal__.resize(100,100)
 xx=document.getElementById('load')
 xx.remove()
 bred='\033[1;31m'
@@ -109,7 +109,7 @@ def exitapp():
     document.location="https://x.com/rohsec"
 
 def choice():
-    inp=input(f"{blue}({bred}rohsec㉿hackinsec{blue}){green}-{blue}[~{blue}]{bgreen}#{reset} ")
+    inp=input(f"{blue}({bred}root㉿rohsec{blue}){green}-{blue}[~{blue}]{bgreen}#{reset} ")
     if(inp in commands):
         if(inp =="help"):
             help()
