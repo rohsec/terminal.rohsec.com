@@ -16,7 +16,7 @@ blue='\033[0;34m'
 green='\033[0;32m'
 reset='\033[0m'
 
-commands=["help","learn","about","extensions","coffee","joke","crt","exit"]
+commands=["help","learn","about","extensions","coffee","joke","crt","exit","blog"]
 extensions=["AutoRepeater", "Js Link Finder", "GAP", "Piper", "Reflection", "Hackverter"]
 learn_list={"TomNomNom":"TomNomNomDotCom","NahamSec":"nahamsec","Jason Haddix":"jhaddix","IppSec":"ippsec","John Hammond":"_JohnHammond","LiveOverflow ":"LiveOverflow","g0lden":"g0lden1"}
 headers={'Accept':'application/json'}
@@ -35,16 +35,20 @@ def help():
     crt -- Extract Subdomains from Crt.sh
     joke -- Get a dad joke from icanhazdadjoke
     extensions -- Prints My Burp Suit Exetnsions
-    learn -- Twitter accounts you must follow ;)
+    learn -- Resources to get started in BugBounties ;)
+    blog -- My blog post
     about -- About Me 
+    coffee  -- Buy me a Coffee
     exit -- Exit the app
 """)
 def extension():
     print(f"{yellow}[{bgreen} *{yellow} ]{reset} My current Burp Extensions are :")
+    print("============================")
     for i in extensions:
-        print(i)
+        print(f" {i} =>")
+    print("============================")
 def learn():
-    print(f"{yellow}[{bgreen} *{yellow} ]{reset} Resources to get started :\n\t1.PortSwigger Academy : https://portswigger.net/web-security\n\t2.Hacker101 : https://hacker101.com")
+    print(f"{yellow}[{bgreen} *{yellow} ]{reset} Resources to get started :\n\t{blue}PortSwigger Academy : {yellow}https://portswigger.net/web-security\n\t{blue}Hacker101 : {yellow}https://hacker101.com{reset}")
 
     print(f"{yellow}[{bgreen} *{yellow} ]{reset} Content Creators to check out :")
     for key in learn_list:
@@ -70,7 +74,7 @@ async def jokes():
         print("Opps !! Techincal error occured, maybe try after some time !")
 
 
-def crtsh():
+async def crtsh():
     BASE_URL = "https://crt.sh/?q={}&output=json"
     subdomains = set()
     wildcardsubdomains = set()
@@ -80,9 +84,9 @@ def crtsh():
             print(f" {yellow}[ {bgreen}+{yellow} ]{reset} Fetching Domains...")
             subdomains.clear()
             wildcardsubdomains.clear()
-            response = req.get(BASE_URL.format(domain), timeout=25)
+            response = fetch(BASE_URL.format(domain), timeout=25)
             if response.ok:
-                content = response.content.decode('UTF-8')
+                content = await response.content.decode('UTF-8')
                 jsondata = json.loads(content)
                 for i in range(len(jsondata)):
                     name_value = jsondata[i]['name_value']
@@ -108,6 +112,10 @@ def exitapp():
     sleep(2)
     document.location="https://x.com/rohsec"
 
+def blog():
+    print(f"{yellow}[{bgreen} *{yellow} ]{reset} You can find my write ups at :")
+    print(f"{yellow}\thttps://blog.rohsec.com{reset}")
+
 def choice():
     inp=input(f"{blue}({bred}root㉿rohsec{blue}){green}-{blue}[~{blue}]{bgreen}#{reset} ")
     if(inp in commands):
@@ -124,10 +132,11 @@ def choice():
         elif(inp=="joke"):
             await jokes()
         elif(inp=="crt"):
-            crtsh()  
+            await crtsh()  
         elif(inp=="exit"):
             exitapp()
-
+        elif(inp=="blog"):
+            blog()
     else:
         print("Command not found !! Run the help command to get a list of available commands")
 
