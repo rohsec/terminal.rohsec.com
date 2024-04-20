@@ -42,7 +42,6 @@ def help():
 """)
 
 
-
 def tools():
     # async def crtsh():
     # BASE_URL = "https://crt.sh/?q={}&output=json"

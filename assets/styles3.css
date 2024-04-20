@@ -1,5 +1,6 @@
 body{
-    background-color: #191a19;
+    /* background-color: #191a19; */
+    background-color: #0f0a14;
     padding-left: 1rem;
     padding-right: 1rem;
     color:white
@@ -13,4 +14,7 @@ h1{
 a{
     color: yellow;
     text-decoration: none;
+}
+.xterm-viewport{
+    background-color: #0f0a14 !important;
 }
