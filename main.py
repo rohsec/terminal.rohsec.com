@@ -3,7 +3,8 @@ from time import sleep
 from pyscript import document, fetch,window
 
 ## remove load banner
-# __terminal__.resize(100,100)
+__terminal__.resize(100,100)
+player=document.getElementById('xxx')
 xx=document.getElementById('load')
 xx.remove()
 bred='\033[1;31m'
@@ -15,7 +16,7 @@ blue='\033[0;34m'
 green='\033[0;32m'
 reset='\033[0m'
 
-commands=["clear","toolkit","help","learn","about","extensions","coffee","joke","exit","blog","social"]
+commands=["music","clear","toolkit","help","learn","about","extensions","coffee","joke","exit","blog","social"]
 extensions=["AutoRepeater", "Js Link Finder", "GAP", "Piper", "Reflection", "Hackverter"]
 learn_list={"TomNomNom":"TomNomNomDotCom","NahamSec":"nahamsec","Jason Haddix":"jhaddix","IppSec":"ippsec","John Hammond":"_JohnHammond","LiveOverflow ":"LiveOverflow","g0lden":"g0lden1"}
 headers={'Accept':'application/json'}
@@ -24,13 +25,29 @@ subdomains = set()
 wildcardsubdomains = set()
 
 def banner():
-    print("Hello World !! Welcome to the matrix, Enter help to check the available commands")
-
+    print(f"Hello World !! Welcome to the matrix. Enter {bgreen}help{reset} to check available commands")
+#     print(f"""⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡴⠟⠛⠛⠛⠛⠛⢦⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+# ⠀⠀⠀⠀⠀⠀⠀⠀⣠⡾⠋⠀⠀⠀⠀⠀⠀⠀⠀⠙⠷⣄⠀⠀⠀⠀⠀⠀⠀⠀
+# ⠀⠀⠀⠀⠀⠀⠀⢀⡟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢹⡆⠀⠀⠀⠀Hello World !! Welcome to the matrix⠀⠀⠀
+# ⠀⠀⠀⠀⠀⠀⠀⠀⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⣷⠀⠀⠀⠀I am Rohit a.k.a {red}rohsec{reset}. I am a full time
+# ⠀⠀⠀⠀⠀⠀⢀⡿⠀⠀⢀⣀⣤⡴⠶⠶⢦⣤⣀⡀⠀⠀⢻⡆⠀⠀⠀BugBounty Hunter and HackerOne Ambassador.⠀⠀⠀
+# ⠀⠀⠀⠀⠀⠀⠘⣧⡀⠛⢻⡏⠀⠀⠀⠀⠀⠀⠉⣿⠛⠂⣼⠇⠀⠀⠀I like identifying vulnerabilities and helping⠀⠀⠀
+# ⠀⠀⠀⠀⢀⣤⡴⠾⢷⡄⢸⡇⠀⠀⠀⠀⠀⠀⢀⡟⢀⡾⠷⢦⣤⡀⠀organizations reinforce their defenses.⠀⠀⠀
+# ⠀⠀⠀⢀⡾⢁⣀⣀⣀⣻⣆⣻⣦⣤⣀⣀⣠⣴⣟⣡⣟⣁⣀⣀⣀⢻⡄⠀⠀⠀
+# ⠀⠀⢀⡾⠁⣿⠉⠉⠀⠀⠉⠁⠉⠉⠉⠉⠉⠀⠀⠈⠁⠈⠉⠉⣿⠈⢿⡄⠀Enter {bgreen}help{reset} to check available commands
+# ⠀⠀⣾⠃⠀⣿⠀⠀⠀⠀⠀⠀⣠⠶⠛⠛⠷⣤⠀⠀⠀⠀⠀⠀⣿⠀⠈⢷⡀⠀
+# ⠀⣼⠃⠀⠀⣿⠀⠀⠀⠀⠀⢸⠏⢤⡀⢀⣤⠘⣧⠀⠀⠀⠀⠀⣿⠀⠀⠈⣷⠀
+# ⢸⡇⠀⠀⠀⣿⠀⠀⠀⠀⠀⠘⢧⣄⠁⠈⣁⣴⠏⠀⠀⠀⠀⠀⣿⠀⠀⠀⠘⣧
+# ⠈⠳⣦⣀⠀⣿⠀⠀⠀⠀⠀⠀⠀⠻⠶⠶⠟⠀⠀⠀⠀⠀⠀⠀⣿⠀⢀⣤⠞⠃
+# ⠀⠀⠀⠙⠷⣿⣀⣀⣀⣀⣀⣠⣤⣤⣤⣤⣀⣤⣠⣤⡀⠀⣤⣄⣿⡶⠋⠁⠀⠀
+# ⠀⠀⠀⠀⠀⢿⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣿⠀⠀⠀⠀⠀""")
+    # 
 def help():
     print(f"{yellow}[{bgreen} *{yellow} ]{reset} Available Commands :")
     print(f"""\t{bblue}|--{bgreen} help{reset} -- displays available commands    
     \t{bblue}|--{bgreen} toolkit{reset} -- BugBounty Tool Kit
     \t{bblue}|--{bgreen} joke{reset} -- Get a dad joke from icanhazdadjoke
+    \t{bblue}|--{bgreen} music{reset} -- Play an AI generated Hacking Song
     \t{bblue}|--{bgreen} extensions{reset} -- Prints My Burp Suit Exetnsions
     \t{bblue}|--{bgreen} learn{reset} -- Resources to get started in BugBounties ;)
     \t{bblue}|--{bgreen} blog{reset} -- My blog post
@@ -41,6 +58,30 @@ def help():
     \t{bblue}|--{bgreen} exit{reset} -- Exit the app
 """)
 
+def music():
+    print(" ===========================")
+    print(f" |{bgreen}    Music Center {bblue}v1.0{reset}    |")
+    print(" ===========================")
+    print(""" ░░█▀▀▀▀▀▀▀▀▀▀▀▀▀▀█   ♫ ♪ ♫ ♪
+ ██▀▀▀██▀▀▀▀▀▀██▀▀▀██
+ █▒▒▒▒▒█▒▀▀▀▀▒█▒▒▒▒▒█
+ █▒▒▒▒▒█▒████▒█▒▒▒▒▒█
+ ██▄▄▄██▄▄▄▄▄▄██▄▄▄██""")
+    ch=input(f"\n {bred}0.{bblue}Play\n {bred}1.{bblue}Pause{reset}\n Enter choice: ")
+    if(ch=="0"):
+        print(f" {yellow}[{bgreen} * {yellow}]{reset} Playing some music for you...")
+        print(f""" {green}» {yellow}[Lost Connections]{green} «
+ {reset}0:00{blue} ─〇─────{reset} 1:40
+ {blue}⇄   ◃◃   ⅠⅠ   ▹▹   ↻{reset}""")
+        player.play()
+    elif(ch=="1"):
+        print(f" {yellow}[{bgreen} * {yellow}]{reset} Stoping the music...")
+        print(f""" {green}» {yellow}[Lost Connections]{green} «
+ {reset}0:00{blue} ─〇─────{reset} 1:40
+ {blue}⇄   ◃◃   ⅠⅠ   ▹▹   ↻{reset}""")
+        player.pause()
+    else:
+        print("Wrong Choice!!")
 
 def tools():
     # async def crtsh():
@@ -150,9 +191,23 @@ def learn():
         print(f"\t{bblue}|-- {yellow}{key} : {bblue}https://youtube.com/@{learn_list[key]}" )
 
 def about():
-    print(f"{yellow}[{bgreen} * {yellow}]{reset} About me :")
-    print(f" Hi 👋! I am Rohit a.k.a {red}rohsec{reset}. I am a full time BugBounty Hunter and HackerOne Ambassador. I like identifying vulnerabilities and helping organizations reinforce their defenses.")
-    print(f" You can connect with me at {bblue}https://twitter.com/rohsec{reset}")
+    print(f"""⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡴⠟⠛⠛⠛⠛⠛⢦⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⣠⡾⠋⠀⠀⠀⠀⠀⠀⠀⠀⠙⠷⣄⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⢀⡟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢹⡆⠀⠀⠀⠀Hello World !! Welcome to the matrix⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⣷⠀⠀⠀⠀I am Rohit a.k.a {red}rohsec{reset}. I am a full time
+⠀⠀⠀⠀⠀⠀⢀⡿⠀⠀⢀⣀⣤⡴⠶⠶⢦⣤⣀⡀⠀⠀⢻⡆⠀⠀⠀BugBounty Hunter and HackerOne Ambassador.⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠘⣧⡀⠛⢻⡏⠀⠀⠀⠀⠀⠀⠉⣿⠛⠂⣼⠇⠀⠀⠀I like identifying vulnerabilities and helping⠀⠀⠀
+⠀⠀⠀⠀⢀⣤⡴⠾⢷⡄⢸⡇⠀⠀⠀⠀⠀⠀⢀⡟⢀⡾⠷⢦⣤⡀⠀organizations reinforce their defenses.⠀⠀⠀
+⠀⠀⠀⢀⡾⢁⣀⣀⣀⣻⣆⣻⣦⣤⣀⣀⣠⣴⣟⣡⣟⣁⣀⣀⣀⢻⡄⠀⠀⠀
+⠀⠀⢀⡾⠁⣿⠉⠉⠀⠀⠉⠁⠉⠉⠉⠉⠉⠀⠀⠈⠁⠈⠉⠉⣿⠈⢿⡄⠀
+⠀⠀⣾⠃⠀⣿⠀⠀⠀⠀⠀⠀⣠⠶⠛⠛⠷⣤⠀⠀⠀⠀⠀⠀⣿⠀⠈⢷⡀⠀
+⠀⣼⠃⠀⠀⣿⠀⠀⠀⠀⠀⢸⠏⢤⡀⢀⣤⠘⣧⠀⠀⠀⠀⠀⣿⠀⠀⠈⣷⠀
+⢸⡇⠀⠀⠀⣿⠀⠀⠀⠀⠀⠘⢧⣄⠁⠈⣁⣴⠏⠀⠀⠀⠀⠀⣿⠀⠀⠀⠘⣧
+⠈⠳⣦⣀⠀⣿⠀⠀⠀⠀⠀⠀⠀⠻⠶⠶⠟⠀⠀⠀⠀⠀⠀⠀⣿⠀⢀⣤⠞⠃
+⠀⠀⠀⠙⠷⣿⣀⣀⣀⣀⣀⣠⣤⣤⣤⣤⣀⣤⣠⣤⡀⠀⣤⣄⣿⡶⠋⠁⠀⠀
+⠀⠀⠀⠀⠀⢿⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣿⠀⠀⠀⠀⠀""")
+    # print(f" Hi 👋! I am Rohit a.k.a {red}rohsec{reset}. I am a full time BugBounty Hunter and HackerOne Ambassador. I like identifying vulnerabilities and helping organizations reinforce their defenses.")
+    # print(f" You can connect with me at {bblue}https://twitter.com/rohsec{reset}")
 
 def coffee():
     print(f"{yellow}[{bgreen} *{yellow} ]{reset} Yayy!! Coffee Time :")
@@ -182,7 +237,10 @@ def blog():
     print(f"{yellow}\t{bblue}|-- {yellow}https://blog.rohsec.com{reset}")
 
 def choice():
-    inp=input(f"{blue}({bred}root㉿rohsec{blue}){green}-{blue}[~{blue}]{bgreen}#{reset} ")
+#     inp=input("""┌──(root㉿kali)-[~]
+# └─# """)
+    inp=input(f"""{blue}┌──({bred}root㉿rohsec{blue}){green}-{blue}[{bgreen}~{blue}]{blue}
+└─{bred}#{reset} """)
     if(inp in commands):
         if(inp =="help"):
             help()
@@ -206,6 +264,8 @@ def choice():
             social()
         elif(inp=="toolkit"):
             tools()
+        elif(inp=="music"):
+            music()
     else:
         print("Command not found !! Run the help command to get a list of available commands")
 
