@@ -24,7 +24,7 @@ a{
 /* .container {
     margin-right: 0px;
     margin-left: 0px;
-  }
+  } */
 @media (min-width: 992px) {
     .container {
       width: 970px;
@@ -35,4 +35,4 @@ a{
     .container {
       width: 1170px;
     }
-  } */
+  }
