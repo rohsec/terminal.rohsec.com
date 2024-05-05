@@ -4,7 +4,7 @@ from pyscript import document, fetch,window
 import datetime
 
 ## remove load banner
-# __terminal__.resize(100,100)
+__terminal__.resize(100,100)
 player=document.getElementById('xxx')
 xx=document.getElementById('load')
 xx.remove()
